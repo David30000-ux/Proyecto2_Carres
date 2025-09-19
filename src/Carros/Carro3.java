@@ -10,6 +10,6 @@ package Carros;
  */
 public class Carro3 extends Carro {
     public Carro3(int x, int y){
-        super(x, y, 10, "/Carros/Imagenes/Carro3.png");
+        super(x, y, 10, "/Carros/Imagenes/carro3.png");
     }
 }

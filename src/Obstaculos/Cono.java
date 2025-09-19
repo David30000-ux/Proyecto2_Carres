@@ -10,6 +10,6 @@ package Obstaculos;
  */
 public class Cono extends Obstaculo {
     public Cono(int x, int y){
-        super(x, y, "/Obstaculos/Imagenes/Cono.png");
+        super(x, y, "/Obstaculos/Imagenes/cono.png");
     }
 }

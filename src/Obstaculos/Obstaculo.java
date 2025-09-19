@@ -21,14 +21,19 @@ public abstract class Obstaculo {
 public Obstaculo(int x, int y, String RutaImagen){
     this.x = x;
     this.y = y;
-    this.Ancho = 20;
-    this.Alto = 20;
+    this.Ancho = 40;
+    this.Alto = 60;
     this.Imagen = new ImageIcon(getClass().getResource(RutaImagen)).getImage();
 }
 
 public void MoverObstaculo(int Velocidad){
     y += Velocidad;
 }
+
+public int getX() { return x; }
+public int getY() { return y; }
+public int getAncho() { return Ancho; }
+public int getAlto() { return Alto; }
 
 public void Dibujar(Graphics g){
     g.drawImage(Imagen, x, y, Ancho, Alto, null);
