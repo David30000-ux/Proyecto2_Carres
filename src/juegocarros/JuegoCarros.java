@@ -5,6 +5,7 @@
 package juegocarros;
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 import Carros.*;
 import Pistas.*;
 import javax.sound.sampled.*; 
@@ -222,16 +223,13 @@ public void IniciarCarrera(){
 
 private void mostrarPDF(){
     try{
-        java.net.URL url = getClass().getResource("/Imagenes/guia.pdf");
-        if (url != null){
-        java.io.File file = new java.io.File(url.toURI());
-        if (Desktop.isDesktopSupported()) {
-            Desktop.getDesktop().open(file);
+        File pdf = new File("guia.pdf");
+        if (pdf.exists()) {
+         if (Desktop.isDesktopSupported()){   
+            Desktop.getDesktop().open(pdf);
             } else {
             JOptionPane.showMessageDialog(this, "No se puede abrir el pdf en el sistema.", "Error para abrir el archivo", JOptionPane.ERROR_MESSAGE, null);
-        }
-        } else{
-            JOptionPane.showMessageDialog(this, "No se pudo encontrar el archivo en el sistema", "Error para encontrar el archivo", JOptionPane.ERROR_MESSAGE, null);
+            }
         }
     } catch (Exception ex){
         ex.printStackTrace();
