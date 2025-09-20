@@ -16,7 +16,7 @@ import javax.sound.sampled.*;
 public class JuegoCarros extends JFrame {
     private CardLayout cardlayout;
     private JPanel PanelPrincipal;
-    private JPanel Menu, Seleccion, Juego, Fin;
+    private JPanel Menu, Seleccion, Juego;
     private Clip Musiquita;
     
     // Labels
@@ -44,13 +44,11 @@ public JuegoCarros(){
     CrearMenu();
     CrearSeleccion();
     CrearJuego();
-    CrearFin();
     
     // Nombre Paneles
     PanelPrincipal.add(Menu, "menu");
     PanelPrincipal.add(Seleccion, "seleccion");
     PanelPrincipal.add(Juego, "juego");
-    PanelPrincipal.add(Fin, "fin");
        
     // Iniciar Menu
     cardlayout.show(PanelPrincipal, "menu");
@@ -97,6 +95,7 @@ public void CrearMenu(){
     
     // Acciones
     btnInicio.addActionListener(e -> IniciarSeleccion());
+    btnManual.addActionListener(e -> mostrarPDF());
 }
 
 public void CrearSeleccion(){
@@ -173,11 +172,6 @@ public void CrearJuego(){
     Juego.setLayout(null);
 }
 
-public void CrearFin(){
-    Fin = new JPanel();
-    Fin.setLayout(null);
-}
-
 public void IniciarSeleccion(){
     cardlayout.show(PanelPrincipal, "seleccion");
 }
@@ -224,7 +218,24 @@ public void IniciarCarrera(){
 });
     
     cardlayout.show(PanelPrincipal, "juego");
+}
 
+private void mostrarPDF(){
+    try{
+        java.net.URL url = getClass().getResource("/Imagenes/guia.pdf");
+        if (url != null){
+        java.io.File file = new java.io.File(url.toURI());
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().open(file);
+            } else {
+            JOptionPane.showMessageDialog(this, "No se puede abrir el pdf en el sistema.", "Error para abrir el archivo", JOptionPane.ERROR_MESSAGE, null);
+        }
+        } else{
+            JOptionPane.showMessageDialog(this, "No se pudo encontrar el archivo en el sistema", "Error para encontrar el archivo", JOptionPane.ERROR_MESSAGE, null);
+        }
+    } catch (Exception ex){
+        ex.printStackTrace();
+    }    
 }
 
 private void mostrarImagen(String tipo, int jugador) {
