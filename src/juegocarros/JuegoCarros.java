@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import Carros.*;
 import Pistas.*;
+import javax.sound.sampled.*; 
 
 /**
  *
@@ -16,6 +17,7 @@ public class JuegoCarros extends JFrame {
     private CardLayout cardlayout;
     private JPanel PanelPrincipal;
     private JPanel Menu, Seleccion, Juego, Fin;
+    private Clip Musiquita;
     
     // Labels
     private JLabel lblTituloMenu, lblManual, lblSeleccion;
@@ -49,9 +51,12 @@ public JuegoCarros(){
     PanelPrincipal.add(Seleccion, "seleccion");
     PanelPrincipal.add(Juego, "juego");
     PanelPrincipal.add(Fin, "fin");
-    
+       
     // Iniciar Menu
     cardlayout.show(PanelPrincipal, "menu");
+    
+    //Directorio de la musica :)
+    reproducirMusica("/Sonidos/musica.wav");
     
     // Parametros del Programa
     setTitle("Need for Gasolina");
@@ -237,6 +242,17 @@ private void mostrarImagen(String tipo, int jugador) {
     } else {
         if (jugador == 1) imgCarroJdr1.setIcon(null);
         else imgCarroJdr2.setIcon(null);
+    }
+}
+
+private void reproducirMusica(String archivo){
+    try {
+        AudioInputStream audioInput = AudioSystem.getAudioInputStream(getClass().getResource(archivo));
+        Musiquita = AudioSystem.getClip();
+        Musiquita.open(audioInput);
+        Musiquita.loop(Clip.LOOP_CONTINUOUSLY); // inicia un bucle infinito para que no se detenga la musica
+    } catch (Exception e){
+        e.printStackTrace();
     }
 }
 

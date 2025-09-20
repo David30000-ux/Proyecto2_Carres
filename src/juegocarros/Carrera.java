@@ -83,7 +83,7 @@ public class Carrera extends JPanel {
             timerPuntos.stop();
             String ganador;
             if (puntosJ1 > puntosJ2) ganador = "Jugador 1";
-            else if (puntosJ2 > puntosJ1) ganador = "Jugador 2 gana";
+            else if (puntosJ2 > puntosJ1) ganador = "Jugador 2";
             else ganador = "Un Empate";
             mostrarGanador(ganador);
         }
